@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AES-128 Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+  <h1>AES-128 Simulator</h1>
+  <p>Advanced Encryption Standard — Enkripsi &amp; Dekripsi dengan Visualisasi Lengkap</p>
+</div>
+
+<div class="wrap">
+
+  <!-- INPUT -->
+  <div class="card">
+    <div class="card-lbl">Input Data</div>
+    <div class="igrid">
+      <div class="field">
+        <label id="inp-label">Plaintext</label>
+        <input type="text" id="inp-text" placeholder="00112233445566778899aabbccddeeff" autocomplete="off" spellcheck="false">
+        <div class="fhint">32 karakter hex (contoh: 00112233...) atau teks maks 16 karakter</div>
+        <div class="ferr" id="err-text">Masukkan 32 karakter hex atau teks maks 16 karakter</div>
+      </div>
+      <div class="field">
+        <label>Key (32 hex = 128-bit)</label>
+        <input type="text" id="inp-key" placeholder="000102030405060708090a0b0c0d0e0f" maxlength="35" autocomplete="off" spellcheck="false">
+        <div class="fhint">Tepat 32 karakter hex (contoh: 000102...0e0f)</div>
+        <div class="ferr" id="err-key">Kunci harus tepat 32 karakter hex</div>
+      </div>
+    </div>
+
+    <div class="mode-row">
+      <div class="ml">Mode Operasi</div>
+      <div class="mtog">
+        <button class="mbtn active" id="btn-enc" onclick="setMode('enc')">🔒 Enkripsi</button>
+        <button class="mbtn"        id="btn-dec" onclick="setMode('dec')">🔓 Dekripsi</button>
+      </div>
+    </div>
+
+    <div class="brow">
+      <button class="btn btn-p" onclick="doProcess()">▶ Proses</button>
+      <button class="btn btn-s" onclick="doReset()">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result-box" class="card">
+    <div class="card-lbl">Hasil</div>
+    <div class="rhero">
+      <div class="rlbl" id="res-lbl">Ciphertext</div>
+      <div class="res-bytes" id="res-bytes"></div>
+      <div class="res-row">
+        <div class="rstr" id="res-str"></div>
+        <button class="copy-btn" onclick="copyResult()">Salin</button>
+      </div>
+    </div>
+
+    <button class="togbtn" id="tog-btn" onclick="toggleSol(this)">
+      <span>Tampilkan Proses Perhitungan</span>
+      <span class="t-arrow" id="t-arrow">▼</span>
+    </button>
+
+    <div id="sol-panel"></div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer>Inka Aqila | Cryptography</footer>
+
+<script src="aes.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
